@@ -1,30 +1,41 @@
+import java.util.ArrayList;
+
 public class Student {
 
     private String name;
     private int age;
-    private float[] grades = new float[3];
+    private double[] grades = new double[3];
 
-    public Student(){
+    Student(){}
+
+    Student(Student other){
+        this.name = other.name;
+        this.age = other.age;
+        this.grades = other.grades;
     }
 
-    public void setDetails(String name , int age){
+    String getName(){
+        return name;
+    }
+
+    void setDetails(String name , int age){
         this.name = name;
         this.age = age;
     }
 
-    public void info(){
+    void info(){
         System.out.println("The name is : "+name);
         System.out.println("The age : "+age);
     }
 
-    public float getGrades(int index) {
+    double getGrades(int index) {
         return grades[index];
     }
-    public void setGrades(float grades , int index) {
+    void setGrades(double grades , int index) {
         this.grades[index] = grades;
     }
 
-    public double calculateGrades(){
+    double calculateGrades(){
        return this.grades[0] + this.grades[1] + this.grades[2];
     }
 }

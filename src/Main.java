@@ -1,44 +1,66 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        System.out.print("Enter the number of the students : ");
-        int number = input.nextInt();
+        ArrayList<Student> students = new ArrayList<>();
+        Student student = new Student();
+
+        System.out.print("Enter your name : ");
+        String name = input.nextLine();
+        System.out.print("Enter your age : ");
+        int age = input.nextInt();
         input.nextLine();
+        student.setDetails(name,age);
+        System.out.println();
 
-        Student[] Students = new Student[number];
-
-        for(int x = 0; x<Students.length;x++){
-            Students[x] = new Student();
-            System.out.print("Enter your name : ");
-            String name = input.nextLine();
-            System.out.print("Enter your age : ");
-            int age = input.nextInt();
-            input.nextLine();
-            Students[x].setDetails(name,age);
-            System.out.println();
+        for(int y = 0; y<3; y++){
+            System.out.print("Enter the grade number "+(y+1)+" : ");
+            student.setGrades(input.nextDouble(),y);
         }
 
-        for(int x = 0 ; x<Students.length ; x++){
-            System.out.println("Enter grades for the student "+(x+1)+" : ");
-            for(int y = 0; y<3; y++){
-                System.out.print("Enter the grade number "+(y+1)+" : ");
-                float grade = input.nextInt();
-                Students[x].setGrades(grade,y);
-            }
+        double point = student.calculateGrades();
+        point = point/3;
+
+        students.add(new Student(student));
+
+        System.out.println("\n");
+        Student student1 = new Student();
+        input.nextLine();
+        System.out.print("Enter your name : ");
+        String name1 = input.nextLine();
+        System.out.print("Enter your age : ");
+        int age1 = input.nextInt();
+        input.nextLine();
+        student1.setDetails(name1, age1);
+        System.out.println();
+
+        for(int y = 0; y<3; y++){
+            System.out.print("Enter the grade number "+(y+1)+" : ");
+            student1.setGrades(input.nextDouble(),y);
         }
 
-        for(int y = 0 ; y<Students.length ; y++) {
-            Students[y].info();
-            System.out.println();
-        }
+        double point1 = student1.calculateGrades();
+        point1 = point1/3;
 
-        for(int x = 0; x<Students.length ; x++){
-            double point = Students[x].calculateGrades();
-            System.out.println("The student : "+point);
-        }
+        students.add(new Student(student1));
+
+
+        students.getFirst().info();
+        System.out.printf("The point is : %.2f\n",point);
+        System.out.println("The grade 1 : "+students.getFirst().getGrades(0));
+        System.out.println("The grade 2 : "+students.getFirst().getGrades(1));
+        System.out.println("The grade 3 : "+students.getFirst().getGrades(2));
+
+        System.out.println("\n");
+
+        students.get(1).info();
+        System.out.printf("The point is : %.2f\n",point1);
+        System.out.println("The grade 1 : "+students.get(1).getGrades(0));
+        System.out.println("The grade 2 : "+students.get(1).getGrades(1));
+        System.out.println("The grade 3 : "+students.get(1).getGrades(2));
 
 
 
